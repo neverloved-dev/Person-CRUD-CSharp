@@ -49,7 +49,8 @@ namespace PersonWindows.Models
                     .HasColumnName("Name and Surname");
 
                 entity.Property(e => e.Oid)
-                    .HasColumnType("numeric(11, 0)")
+                    .HasMaxLength(11)
+                    .IsUnicode(false)
                     .HasColumnName("OID");
 
                 entity.Property(e => e.Phone)
