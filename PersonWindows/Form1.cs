@@ -65,5 +65,21 @@ namespace PersonWindows
             }
 
         }
-    } 
+
+        private void Exit_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = db.People.Where(x => x.NameAndSurname.Contains(textBox1.Text)).ToList();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = db.People.Where(x => x.Oid.Contains(textBox2.Text)).ToList();
+        }
+    }
+    
 }
