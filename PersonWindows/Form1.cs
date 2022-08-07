@@ -7,22 +7,9 @@ namespace PersonWindows
         PersonContext db;
         public Form1()
         {
-
             InitializeComponent();
             db = new PersonContext();
-            var people = from person in db.People select person;
-            if (people != null)
-            {
-                if (people.Count() > 0)
-                {
-                    dataGridView1.DataSource = people.ToArray();
-                }
-                else
-                {
-                    MessageBox.Show("No records have been found.", "People error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null;
-                }
-            }
+            dataGridView1.DataSource = db.People.ToList();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
