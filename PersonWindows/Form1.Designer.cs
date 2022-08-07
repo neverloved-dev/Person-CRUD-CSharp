@@ -104,6 +104,6 @@
         private Button AddButton;
         private Button EditButton;
         private Button DeleteButton;
-        private DataGridView dataGridView1;
+        public DataGridView dataGridView1;
     }
 }

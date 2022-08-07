@@ -26,28 +26,31 @@ namespace PersonWindows
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete button clicked");
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int index = dataGridView1.SelectedRows[0].Index;
-                int id = 0;
-                bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
+                short id = 0;
+                bool converted = short.TryParse(dataGridView1[0, index].Value.ToString(), out id);
                 if (converted == false)
                     return;
 
                 Person person = db.People.Find(id);
                 db.People.Remove(person);
                 db.SaveChanges();
-
-                MessageBox.Show("Person deleted");
+                dataGridView1.DataSource = db.People.ToList();
             }
         }
 
 
             private void AddButton_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("Add button clicked");
-            }
+                AddForm addForm = new AddForm(this);
+                short id;
+                DialogResult result = addForm.ShowDialog(this);
+                if (result == DialogResult.Cancel)
+                    return;
+            dataGridView1.DataSource = db.People.ToList();   
+             }
         
     } 
 }
