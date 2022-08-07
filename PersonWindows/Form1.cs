@@ -24,8 +24,17 @@ namespace PersonWindows
 
                 Person person = db.People.Find(id);
                 db.People.Remove(person);
-                db.SaveChanges();
-                dataGridView1.DataSource = db.People.ToList();
+                DeleteForm delForm = new DeleteForm(this);
+                delForm.label9.Text = person.Id.ToString();
+                delForm.label10.Text = person.Oid;
+                delForm.label11.Text = person.NameAndSurname;
+                delForm.label12.Text = person.Place;
+                delForm.label13.Text = person.Address;
+                delForm.label14.Text = person.Phone;
+                delForm.label15.Text = person.Mail;
+                DialogResult result = delForm.ShowDialog(this);
+                if (result == DialogResult.Cancel)
+                    return;
             }
         }
 
@@ -57,7 +66,6 @@ namespace PersonWindows
                 editForm.textBox5.Text = person.Address;
                 editForm.textBox6.Text = person.Phone;
                 editForm.textBox7.Text = person.Mail;
-                dataGridView1.DataSource = db.People.ToList();
                 DialogResult result = editForm.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                     return;
