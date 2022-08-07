@@ -88,6 +88,18 @@ namespace PersonWindows
         {
             dataGridView1.DataSource = db.People.Where(x => x.Oid.Contains(textBox2.Text)).ToList();
         }
+
+        private void Search_File_Button_Click(object sender, EventArgs e)
+        {
+            string path = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|"; 
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                path = openFileDialog.FileName;
+                MessageBox.Show(path);
+            }
+        }
     }
     
 }

@@ -37,6 +37,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.Search_File_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +132,22 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "OIB";
             // 
+            // Search_File_Button
+            // 
+            this.Search_File_Button.Location = new System.Drawing.Point(713, 36);
+            this.Search_File_Button.Name = "Search_File_Button";
+            this.Search_File_Button.Size = new System.Drawing.Size(94, 29);
+            this.Search_File_Button.TabIndex = 9;
+            this.Search_File_Button.Text = "Search File";
+            this.Search_File_Button.UseVisualStyleBackColor = true;
+            this.Search_File_Button.Click += new System.EventHandler(this.Search_File_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 485);
+            this.Controls.Add(this.Search_File_Button);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
@@ -166,5 +178,6 @@
         private TextBox textBox1;
         private TextBox textBox2;
         private Label label2;
+        private Button Search_File_Button;
     }
 }
