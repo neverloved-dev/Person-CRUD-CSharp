@@ -1,5 +1,8 @@
 using PersonWindows.Models;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Data;
+
 namespace PersonWindows
 {
     public partial class Form1 : Form
@@ -91,15 +94,46 @@ namespace PersonWindows
 
         private void Search_File_Button_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Make sure that a separator between different pieces of data is a semicolon (,), otherwise the file won't be read",
+                "Important note",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
             string path = "";
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt)|*.txt|"; 
+            openFileDialog.Filter = "txt files(*.txt)| *.txt"; 
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 path = openFileDialog.FileName;
-                MessageBox.Show(path);
+            }
+            
+            List<string> lines = new List<string>();
+            lines = File.ReadAllLines(path).ToList();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(string));
+            dt.Columns.Add("OIB", typeof(string));
+            dt.Columns.Add("Name and Surname", typeof(string));
+            dt.Columns.Add("Place", typeof(string));
+            dt.Columns.Add("Address", typeof(string));
+            dt.Columns.Add("Phone", typeof(string));
+            dt.Columns.Add("E- Mail", typeof(string));
+            if (lines.Count == 0)
+            {
+                MessageBox.Show("The file is empty!",
+                "Important note",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
+            else
+            {
+                foreach(string line in lines)
+                {
+                    dt.Rows.Add(line.Split(","));
+                }
+                dataGridView1.DataSource = dt;
             }
         }
+          
     }
     
 }
